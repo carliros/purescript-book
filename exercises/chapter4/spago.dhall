@@ -8,6 +8,7 @@ You can edit this file as you like.
   , "console"
   , "effect"
   , "foldable-traversable"
+  , "integers"
   , "maybe"
   , "psci-support"
   , "strings"
