@@ -1,5 +1,8 @@
 deploy_key
 
+# ide
+.psc-ide-port
+
 # book generated files
 book
 index.html
