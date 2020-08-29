@@ -3,8 +3,9 @@ module Test.MySolutions where
 import Prelude
 
 import Control.MonadZero (guard)
-import Data.Array (concat, filter, length, reverse, sort, (..))
+import Data.Array (concat, filter, length, reverse, sort, (..), (:), head, tail, snoc)
 import Data.Int (even)
+import Data.Maybe (Maybe(..), fromJust)
 import Test.Examples (factorsV3)
 
 -- Note to reader: Add your solutions to this file
@@ -49,14 +50,24 @@ triples n = do
     guard $ a * a + b * b == c * c
     pure [a, b, c]
 
+primeListNumber :: Int -> Array Int
+primeListNumber n = if n > 1 then filter isPrime (2 .. n) else []
+
+primeFactor :: Int -> Array Int -> Maybe ({a::Int, b::Int})
+primeFactor n l = 
+    case head l of
+        Just m -> if (n `mod` m == 0) 
+                  then Just $ {a: m, b: (n / m) }
+                  else case tail l of 
+                            Just ls -> primeFactor n ls 
+                            Nothing -> Nothing  
+        Nothing -> Nothing
+
 factorizations :: Int -> Array Int
-factorizations n = if n>3 then factors else []
-    where factors = 
-            let list = do
-                    a <- 2 .. (n-1)
-                    guard $ isPrime a
-                    b <- a .. (n - 2)
-                    guard $ isPrime b
-                    guard $ a * b == n
-                    pure [a, b]
-            in reverse <<< sort $ concat list
+factorizations n = 
+                   let primes = primeListNumber n 
+                   in case primeFactor n primes of 
+                        Nothing -> []
+                        Just {a, b} -> if isPrime b 
+                                       then [b, a]
+                                       else snoc (factorizations b) a
