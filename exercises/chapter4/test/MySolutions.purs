@@ -3,7 +3,7 @@ module Test.MySolutions where
 import Prelude
 
 import Control.MonadZero (guard)
-import Data.Array (concat, filter, length, reverse, sort, (..), (:), head, tail, snoc)
+import Data.Array (concat, filter, length, reverse, sort, (..), (:), head, tail, snoc, foldl)
 import Data.Int (even)
 import Data.Maybe (Maybe(..), fromJust)
 import Test.Examples (factorsV3)
@@ -71,3 +71,12 @@ factorizations n =
                         Just {a, b} -> if isPrime b 
                                        then [b, a]
                                        else snoc (factorizations b) a
+
+allTrue :: Array Boolean -> Boolean
+allTrue ls = foldl (&&) true ls
+
+fibTailRec :: Int -> Int
+fibTailRec n = tailFib n 0
+    where tailFib 0 acc = acc
+          tailFib 1 acc = acc + 1
+          tailFib r acc = tailFib (r - 1) 0 + tailFib (r - 2) 0

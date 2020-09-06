@@ -18,6 +18,8 @@ import Test.MySolutions (
   , cartesianProduct
   , triples
   , factorizations
+  , allTrue
+  , fibTailRec
   )
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert (assert, assertFalse)
@@ -124,7 +126,6 @@ main =
         test "Test number that uses the prime numbers less than 10" do
           Assert.equal [ 7, 5, 3, 2 ]
             $ factorizations 210
-{-  Move this block comment starting point to enable more tests      
     suite "Exercise Group - Folds and Tail Recursion" do
       test "Exercise - allTrue" do
         assert "all elements true"
@@ -141,6 +142,7 @@ main =
         test "Verify 44" do
           Assert.equal 1134903170
             $ fibTailRec 44
+{-  Move this block comment starting point to enable more testsS
       suite "Exercise - reverse" do
         test "Empty Array" do
           Assert.equal ([] :: Array Int)
