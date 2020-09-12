@@ -20,6 +20,9 @@ import Test.MySolutions (
   , factorizations
   , allTrue
   , fibTailRec
+  , reverse
+  , onlyFiles
+  , largestSmallest
   )
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert (assert, assertFalse)
@@ -142,7 +145,6 @@ main =
         test "Verify 44" do
           Assert.equal 1134903170
             $ fibTailRec 44
-{-  Move this block comment starting point to enable more testsS
       suite "Exercise - reverse" do
         test "Empty Array" do
           Assert.equal ([] :: Array Int)
@@ -166,6 +168,7 @@ main =
           ]
           $ map filename
           $ onlyFiles root
+{-  Move this block comment starting point to enable more tests
       test "Exercise - largestSmallest for root" do
         Assert.equal [ "/home/user/code/js/test.js", "/etc/hosts" ]
           $ map fst

@@ -6,7 +6,9 @@ import Control.MonadZero (guard)
 import Data.Array (concat, filter, length, reverse, sort, (..), (:), head, tail, snoc, foldl)
 import Data.Int (even)
 import Data.Maybe (Maybe(..), fromJust)
-import Test.Examples (factorsV3)
+import Data.Path (Path, isDirectory)
+import Data.Tuple (Tuple(..))
+import Test.Examples (allFiles, factorsV3)
 
 -- Note to reader: Add your solutions to this file
 
@@ -76,7 +78,16 @@ allTrue :: Array Boolean -> Boolean
 allTrue ls = foldl (&&) true ls
 
 fibTailRec :: Int -> Int
-fibTailRec n = tailFib n 0
-    where tailFib 0 acc = acc
-          tailFib 1 acc = acc + 1
-          tailFib r acc = tailFib (r - 1) 0 + tailFib (r - 2) 0
+fibTailRec n = tailFib 0 0 1
+    where tailFib r x y = if n == r 
+                          then y
+                          else tailFib (r+1) y (x + y)
+
+reverse :: forall a. Array a -> Array a
+reverse = foldl (\b a -> a : b) []
+
+onlyFiles :: Path -> Array Path
+onlyFiles path = filter (not <<< isDirectory) $ allFiles path
+
+largestSmallest :: Path -> Array (Tuple String Int)
+largestSmallest path = []
