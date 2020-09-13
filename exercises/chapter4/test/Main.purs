@@ -168,11 +168,11 @@ main =
           ]
           $ map filename
           $ onlyFiles root
-{-  Move this block comment starting point to enable more tests
       test "Exercise - largestSmallest for root" do
         Assert.equal [ "/home/user/code/js/test.js", "/etc/hosts" ]
           $ map fst
           $ largestSmallest root
+{-  Move this block comment starting point to enable more tests
       suite "Exercise - whereIs" do
         test "locates a file"
           $ Assert.equal (Just ("/bin/"))

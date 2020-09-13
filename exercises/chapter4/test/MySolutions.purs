@@ -6,7 +6,7 @@ import Control.MonadZero (guard)
 import Data.Array (concat, filter, length, reverse, sort, (..), (:), head, tail, snoc, foldl)
 import Data.Int (even)
 import Data.Maybe (Maybe(..), fromJust)
-import Data.Path (Path, isDirectory)
+import Data.Path (Path, filename, isDirectory, size)
 import Data.Tuple (Tuple(..))
 import Test.Examples (allFiles, factorsV3)
 
@@ -90,4 +90,14 @@ onlyFiles :: Path -> Array Path
 onlyFiles path = filter (not <<< isDirectory) $ allFiles path
 
 largestSmallest :: Path -> Array (Tuple String Int)
-largestSmallest path = []
+largestSmallest path = 
+    let files = onlyFiles path
+        maxL = foldl (cmp (>=)) (Tuple "" 0) files
+        minL = foldl (cmp (<=)) (Tuple "" 1000) files
+    in [maxL, minL]
+    where cmp :: (Int -> Int -> Boolean) -> Tuple String Int -> Path -> Tuple String Int
+          cmp f (Tuple nm2 sz2) file = let nm1 = filename file
+                                           sz1 = case size file of 
+                                                    Just n -> n
+                                                    Nothing -> 0
+                                        in if f sz1 sz2 then (Tuple nm1 sz1) else (Tuple nm2 sz2)
