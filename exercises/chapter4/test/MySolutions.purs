@@ -6,7 +6,9 @@ import Control.MonadZero (guard)
 import Data.Array (concat, filter, length, reverse, sort, (..), (:), head, tail, snoc, foldl)
 import Data.Int (even)
 import Data.Maybe (Maybe(..), fromJust)
-import Data.Path (Path, filename, isDirectory, size)
+import Data.Path (Path, filename, isDirectory, root, size)
+import Data.String (Pattern(..), stripSuffix)
+import Data.String.Utils (endsWith)
 import Data.Tuple (Tuple(..))
 import Test.Examples (allFiles, factorsV3)
 
@@ -101,3 +103,10 @@ largestSmallest path =
                                                     Just n -> n
                                                     Nothing -> 0
                                         in if f sz1 sz2 then (Tuple nm1 sz1) else (Tuple nm2 sz2)
+
+whereIs :: String -> Maybe String
+whereIs file = let paths = map filename <<< allFiles $ root
+                   filtered = filter (endsWith file) paths
+               in case head filtered of 
+                    Nothing -> Nothing
+                    Just path -> stripSuffix (Pattern file) path

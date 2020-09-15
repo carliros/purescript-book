@@ -2,28 +2,13 @@ module Test.Main where
 
 import Prelude
 import Test.Examples
+
 import Data.Array (sort)
 import Data.Maybe (Maybe(..))
 import Data.Path (filename, root)
 import Data.Tuple (fst)
 import Effect (Effect)
-import Test.MySolutions (
-    countEven
-  , isEven
-  , keepNonNegative
-  , squared
-  , (<$?>)
-  , keepNonNegativeRewrite
-  , isPrime
-  , cartesianProduct
-  , triples
-  , factorizations
-  , allTrue
-  , fibTailRec
-  , reverse
-  , onlyFiles
-  , largestSmallest
-  )
+import Test.MySolutions (allTrue, cartesianProduct, countEven, factorizations, fibTailRec, isEven, isPrime, keepNonNegative, keepNonNegativeRewrite, largestSmallest, onlyFiles, reverse, squared, triples, whereIs, (<$?>))
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert (assert, assertFalse)
 import Test.Unit.Assert as Assert
@@ -172,7 +157,6 @@ main =
         Assert.equal [ "/home/user/code/js/test.js", "/etc/hosts" ]
           $ map fst
           $ largestSmallest root
-{-  Move this block comment starting point to enable more tests
       suite "Exercise - whereIs" do
         test "locates a file"
           $ Assert.equal (Just ("/bin/"))
@@ -181,7 +165,6 @@ main =
           $ Assert.equal (Nothing)
           $ whereIs "lss"
 
--}
 runChapterExamples :: TestSuite
 runChapterExamples =
   suite "Chapter Examples" do
