@@ -18,4 +18,9 @@ binomial n k
                       facNK = factorial (n - k)
                   in facN / (facK * facNK)
 
--- n! / k! (n - k)!
+pascal :: Int -> Int -> Int
+pascal n 0 = 1
+pascal n k
+    | n < k  = 0
+    | n == k = 1
+    | otherwise = factorial n / (factorial k * factorial (n - k))
