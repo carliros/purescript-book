@@ -7,7 +7,7 @@ import Data.Maybe (Maybe(Just, Nothing))
 import Data.Person (Person)
 import Data.Picture (Point(..), Shape(..), Picture, Bounds(..), getCenter, origin)
 import Effect (Effect)
-import Test.MySolutions (factorial)
+import Test.MySolutions (binomial, factorial)
 import Test.Unit (suite, test)
 import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
@@ -41,7 +41,6 @@ main =
           $ factorial 4
         Assert.equal 3628800
           $ factorial 10
-{-  Move this block comment starting point to enable more tests
       test "Exercise - binomial" do
         Assert.equal 1
           $ binomial 10 0
@@ -53,6 +52,7 @@ main =
           $ binomial 10 5
         Assert.equal 1
           $ binomial 5 5
+{-  Move this block comment starting point to enable more tests
       test "Exercise - pascal" do
         Assert.equal 1
           $ pascal 10 0
