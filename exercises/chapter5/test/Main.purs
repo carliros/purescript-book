@@ -7,7 +7,7 @@ import Data.Maybe (Maybe(Just, Nothing))
 import Data.Person (Person)
 import Data.Picture (Point(..), Shape(..), Picture, Bounds(..), getCenter, origin)
 import Effect (Effect)
-import Test.MySolutions (binomial, factorial, pascal)
+import Test.MySolutions (binomial, factorial, fromSingleton, pascal, sameCity)
 import Test.Unit (suite, test)
 import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
@@ -63,7 +63,6 @@ main =
           $ pascal 10 5
         Assert.equal 1
           $ pascal 5 5
-{-  Move this block comment starting point to enable more tests
     suite "Exercise Group - Array and Record Patterns" do
       test "Exercise - sameCity" do
         Assert.equal true
@@ -77,6 +76,7 @@ main =
           $ fromSingleton "default" ["B"]
         Assert.equal "default"
           $ fromSingleton "default" ["B", "C", "D"]
+{-  Move this block comment starting point to enable more tests
     suite "Exercise Group - Algebraic Data Types" do
       test "Exercise - circleAtOrigin" do
         Assert.equal origin
