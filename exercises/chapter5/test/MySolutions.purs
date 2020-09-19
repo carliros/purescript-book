@@ -2,6 +2,7 @@ module Test.MySolutions where
 
 import Prelude
 import Data.Person(Person)
+import Data.Picture(Shape(..), origin)
 
 factorial :: Int -> Int
 factorial 0 = 1
@@ -33,3 +34,6 @@ fromSingleton :: String -> Array String -> String
 fromSingleton def [] = def
 fromSingleton def [s] = s
 fromSingleton def _ = def
+
+circleAtOrigin :: Shape
+circleAtOrigin = Circle origin 10.0
