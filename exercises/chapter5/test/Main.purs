@@ -7,7 +7,7 @@ import Data.Maybe (Maybe(Just, Nothing))
 import Data.Person (Person)
 import Data.Picture (Point(..), Shape(..), Picture, Bounds(..), getCenter, origin)
 import Effect (Effect)
-import Test.MySolutions (binomial, factorial, fromSingleton, pascal, sameCity, circleAtOrigin)
+import Test.MySolutions (binomial, circleAtOrigin, doubleScaleAndCenter, factorial, fromSingleton, pascal, sameCity)
 import Test.Unit (suite, test)
 import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
@@ -80,7 +80,6 @@ main =
       test "Exercise - circleAtOrigin" do
         Assert.equal origin
           $ getCenter circleAtOrigin
-{-  Move this block comment starting point to enable more tests
       test "Exercise - doubleScaleAndCenter" do
         Assert.equal (Circle origin 10.0)
           $ doubleScaleAndCenter $ Circle origin 5.0
@@ -96,6 +95,7 @@ main =
           $ doubleScaleAndCenter $ Line (Point { x: 0.0, y: 4.0 }) (Point { x: 4.0, y: 8.0 })
         Assert.equal (Text (Point { x: 0.0, y: 0.0 }) "Hello .purs!" )
           $ doubleScaleAndCenter $ Text (Point { x: 4.0, y: 6.0 }) "Hello .purs!"
+{-  Move this block comment starting point to enable more tests
       test "Exercise - shapeText" do
         Assert.equal (Just "Hello .purs!")
           $ shapeText $ Text origin "Hello .purs!"

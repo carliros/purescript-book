@@ -1,8 +1,10 @@
 module Test.MySolutions where
 
 import Prelude
-import Data.Person(Person)
-import Data.Picture(Shape(..), origin)
+
+import Data.Person (Person)
+import Data.Picture (Shape(..), Point(..), origin)
+import Test.NoPeeking.Solutions (doubleScaleAndCenter)
 
 factorial :: Int -> Int
 factorial 0 = 1
@@ -37,3 +39,16 @@ fromSingleton def _ = def
 
 circleAtOrigin :: Shape
 circleAtOrigin = Circle origin 10.0
+
+doubleScaleAndCenter :: Shape -> Shape
+doubleScaleAndCenter (Circle r radio) = Circle origin (radio * 2.0)
+doubleScaleAndCenter (Rectangle _ x y) = Rectangle origin (x * 2.0) (y * 2.0)
+doubleScaleAndCenter (Text _ str) = Text origin str
+doubleScaleAndCenter (Line (Point p1) (Point p2)) 
+    = let x1 = p1.x * 2.0
+          y1 = p1.y * 2.0
+          x2 = p2.x * 2.0
+          y2 = p2.y * 2.0
+          deltaX = (x2 + x1) / 2.0
+          deltaY = (y2 + y1) / 2.0
+      in Line (Point {x: x1 - deltaX, y: y1 - deltaY}) (Point {x: x2 - deltaX, y: y2 - deltaY})
