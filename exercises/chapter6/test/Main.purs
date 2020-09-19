@@ -14,11 +14,11 @@ main :: Effect Unit
 main =
   runTest do
     runChapterExamples
-    {-  Move this block comment starting point to enable more tests
     test "Exercise Group - Show Me" do
       -- Tests for the first exercise in this chapter (Show Shape)
       -- can be found at the end of the previous chapter (chapter 5).
       Assert.equal true true
+{-  Move this block comment starting point to enable more tests
     suite "Exercise Group - Common Type Classes" do
       suite "Exercise - Show and Eq for Complex" do
         test "Show Complex" do
