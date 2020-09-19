@@ -7,7 +7,7 @@ import Data.Maybe (Maybe(Just, Nothing))
 import Data.Person (Person)
 import Data.Picture (Point(..), Shape(..), Picture, Bounds(..), getCenter, origin)
 import Effect (Effect)
-import Test.MySolutions (binomial, circleAtOrigin, doubleScaleAndCenter, factorial, fromSingleton, pascal, sameCity)
+import Test.MySolutions (binomial, circleAtOrigin, doubleScaleAndCenter, factorial, fromSingleton, pascal, sameCity, shapeText)
 import Test.Unit (suite, test)
 import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
@@ -95,7 +95,6 @@ main =
           $ doubleScaleAndCenter $ Line (Point { x: 0.0, y: 4.0 }) (Point { x: 4.0, y: 8.0 })
         Assert.equal (Text (Point { x: 0.0, y: 0.0 }) "Hello .purs!" )
           $ doubleScaleAndCenter $ Text (Point { x: 4.0, y: 6.0 }) "Hello .purs!"
-{-  Move this block comment starting point to enable more tests
       test "Exercise - shapeText" do
         Assert.equal (Just "Hello .purs!")
           $ shapeText $ Text origin "Hello .purs!"
@@ -105,6 +104,7 @@ main =
           $ shapeText $ Rectangle origin 1.0 1.0
         Assert.equal Nothing
           $ shapeText $ Line origin (Point { x: 1.0, y: 1.0 })
+{-  Move this block comment starting point to enable more tests
     suite "Exercise Group - Vector Graphics" do
       test "Exercise - area" do
         Assert.equal 50

@@ -5,6 +5,7 @@ import Prelude
 import Data.Person (Person)
 import Data.Picture (Shape(..), Point(..), origin)
 import Test.NoPeeking.Solutions (doubleScaleAndCenter)
+import Data.Maybe
 
 factorial :: Int -> Int
 factorial 0 = 1
@@ -52,3 +53,7 @@ doubleScaleAndCenter (Line (Point p1) (Point p2))
           deltaX = (x2 + x1) / 2.0
           deltaY = (y2 + y1) / 2.0
       in Line (Point {x: x1 - deltaX, y: y1 - deltaY}) (Point {x: x2 - deltaX, y: y2 - deltaY})
+
+shapeText :: Shape -> Maybe String
+shapeText (Text _ str) = Just str
+shapeText _ = Nothing
