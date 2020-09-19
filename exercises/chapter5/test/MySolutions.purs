@@ -3,10 +3,10 @@ module Test.MySolutions where
 import Prelude
 
 import Data.Person (Person)
-import Data.Picture (Shape(..), Point(..), origin)
-import Test.NoPeeking.Solutions (doubleScaleAndCenter)
-import Data.Maybe
+import Data.Picture (Shape(..), Point(..), origin, Picture, intersect, shapeBounds, Bounds, bounds)
+import Data.Maybe (Maybe(..))
 import Math (pi)
+import Data.Foldable (foldl)
 
 factorial :: Int -> Int
 factorial 0 = 1
@@ -63,3 +63,10 @@ area :: Shape -> Number
 area (Circle _ r) = r * r * pi
 area (Rectangle _ w h) = w * h
 area _ = 0.0
+
+data ShapeEx = Clipped Picture Point Number Number
+             | ShapeEx Shape
+
+shapeBounds' :: ShapeEx -> Bounds
+shapeBounds' (Clipped pics p w h) = intersect (bounds pics) (shapeBounds (Rectangle p w h))
+shapeBounds' (ShapeEx s) = shapeBounds s
