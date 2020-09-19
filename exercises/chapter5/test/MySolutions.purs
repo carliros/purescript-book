@@ -6,6 +6,7 @@ import Data.Person (Person)
 import Data.Picture (Shape(..), Point(..), origin)
 import Test.NoPeeking.Solutions (doubleScaleAndCenter)
 import Data.Maybe
+import Math (pi)
 
 factorial :: Int -> Int
 factorial 0 = 1
@@ -57,3 +58,8 @@ doubleScaleAndCenter (Line (Point p1) (Point p2))
 shapeText :: Shape -> Maybe String
 shapeText (Text _ str) = Just str
 shapeText _ = Nothing
+
+area :: Shape -> Number
+area (Circle _ r) = r * r * pi
+area (Rectangle _ w h) = w * h
+area _ = 0.0
