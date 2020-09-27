@@ -3,7 +3,7 @@ module Test.MySolutions where
 import Prelude
 
 import Data.Array ((:))
-import Data.Ord (Ordering(..))
+import Data.Foldable (class Foldable, foldMap, foldl, foldr)
 
 newtype Complex = Complex
   { real :: Number
@@ -48,3 +48,8 @@ instance ordExtended :: Ord a => Ord (Extended a) where
   compare (Finite n) b = case b of
                             Infinite -> LT
                             Finite m -> compare n m
+
+instance foldableNonEmpty :: Foldable (NonEmpty) where
+  foldr f b (NonEmpty n arrayN) = foldr f b (n : arrayN)
+  foldl f b (NonEmpty n arrayN) = foldl f b (n : arrayN)
+  foldMap f (NonEmpty n arrayN) = foldMap f (n : arrayN)
