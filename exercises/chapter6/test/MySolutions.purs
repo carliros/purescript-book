@@ -1,6 +1,7 @@
 module Test.MySolutions where
 
 import Prelude
+import Data.Array ((:))
 
 newtype Complex = Complex
   { real :: Number
@@ -21,3 +22,6 @@ instance eqNonEmpty :: Eq a => Eq (NonEmpty a) where
 
 instance showNonEmpty :: Show a => Show (NonEmpty a) where
   show (NonEmpty n arrayN) = show n <> " : " <> show arrayN
+
+instance semiGroupNonEmpty :: Semigroup (NonEmpty a) where 
+  append (NonEmpty a arrayA) (NonEmpty b arrayB) = NonEmpty a (arrayA <> ( b : arrayB))
