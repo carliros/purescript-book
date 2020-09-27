@@ -7,7 +7,7 @@ import Data.Hashable (hash)
 import Data.List (List(..), (:))
 import Effect (Effect)
 import Partial.Unsafe (unsafePartial)
-import Test.MySolutions (Complex(..), NonEmpty(..))
+import Test.MySolutions (Complex(..), NonEmpty(..), Extended(..))
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
@@ -56,7 +56,6 @@ main =
           Assert.equal (NonEmpty 10 [ 20, 30 ])
             $ map (_ * 10)
             $ NonEmpty 1 [ 2, 3 ]
-{-  Move this block comment starting point to enable more tests
       suite "Exercise - Ord for Extended" do
         -- Type annotation necessary to ensure there is an Ord instance for inner type (Int in this case)
         test "Extended compare inf inf" do
@@ -81,6 +80,7 @@ main =
           Assert.equal LT
             $ compare (Finite 5)
             $ Finite 6
+{-  Move this block comment starting point to enable more tests
       suite "Exercise - Foldable for NonEmpty" do
         test "NonEmpty foldl" do
           Assert.equal 123

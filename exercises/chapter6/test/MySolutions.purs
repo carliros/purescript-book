@@ -1,7 +1,9 @@
 module Test.MySolutions where
 
 import Prelude
+
 import Data.Array ((:))
+import Data.Ord (Ordering(..))
 
 newtype Complex = Complex
   { real :: Number
@@ -28,4 +30,21 @@ instance semiGroupNonEmpty :: Semigroup (NonEmpty a) where
 
 instance functorNonEmpty :: Functor NonEmpty where
   map f (NonEmpty a arrayA) = NonEmpty (f a) (map f arrayA)
-  
+
+data Extended a = Finite a | Infinite
+
+instance eqExtended :: Eq a => Eq (Extended a) where
+  eq (Infinite) b = case b of 
+                       Infinite -> true
+                       Finite _ -> false
+  eq (Finite n) b = case b of
+                      Infinite -> false
+                      Finite m -> n == m
+
+instance ordExtended :: Ord a => Ord (Extended a) where 
+  compare (Infinite) b = case b of
+                            Infinite -> EQ
+                            Finite _ -> GT
+  compare (Finite n) b = case b of
+                            Infinite -> LT
+                            Finite m -> compare n m
