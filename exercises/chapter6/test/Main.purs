@@ -7,7 +7,7 @@ import Data.Hashable (hash)
 import Data.List (List(..), (:))
 import Effect (Effect)
 import Partial.Unsafe (unsafePartial)
-import Test.MySolutions (Complex(..))
+import Test.MySolutions (Complex(..), NonEmpty(..))
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
@@ -37,7 +37,6 @@ main =
           Assert.expectFailure "should not be equal"
             $ Assert.equal (Complex { real: 5.0, imaginary: 2.0 })
             $ Complex { real: 1.0, imaginary: 2.0 }
-{-  Move this block comment starting point to enable more tests
     suite "Exercise Group - Constraints and Dependencies" do
       suite "Exercise - Eq for NonEmpty" do
         test "NonEmpty equals" do
@@ -47,6 +46,7 @@ main =
           Assert.expectFailure "should not be equal"
             $ Assert.equal (NonEmpty 1 [ 2, 3 ])
             $ NonEmpty 2 [ 2, 3 ]
+{-  Move this block comment starting point to enable more tests
       suite "Exercise - Semigroup for NonEmpty" do
         test "NonEmpty append" do
           Assert.equal (NonEmpty 1 [ 2, 3, 4, 5, 6 ])
