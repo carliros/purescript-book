@@ -25,3 +25,7 @@ instance showNonEmpty :: Show a => Show (NonEmpty a) where
 
 instance semiGroupNonEmpty :: Semigroup (NonEmpty a) where 
   append (NonEmpty a arrayA) (NonEmpty b arrayB) = NonEmpty a (arrayA <> ( b : arrayB))
+
+instance functorNonEmpty :: Functor NonEmpty where
+  map f (NonEmpty a arrayA) = NonEmpty (f a) (map f arrayA)
+  
