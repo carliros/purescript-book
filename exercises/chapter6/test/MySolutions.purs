@@ -53,3 +53,10 @@ instance foldableNonEmpty :: Foldable (NonEmpty) where
   foldr f b (NonEmpty n arrayN) = foldr f b (n : arrayN)
   foldl f b (NonEmpty n arrayN) = foldl f b (n : arrayN)
   foldMap f (NonEmpty n arrayN) = foldMap f (n : arrayN)
+
+-- data OneMore f a = OneMore a (f a)
+
+-- instance foldableOneMore :: Foldable f => Foldable (OneMore f) where
+--   foldr f b (OneMore n containerN) = foldr f b (n : containerN)
+--   foldl f b (OneMore n containerN) = foldl f b (n : containerN)
+--   foldMap f (OneMore n containerN) = foldMap f (n : containerN)

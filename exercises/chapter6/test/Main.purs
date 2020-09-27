@@ -93,7 +93,7 @@ main =
           Assert.equal "123"
             $ foldMap (\x -> show x)
             $ NonEmpty 1 [ 2, 3 ]
-{-  Move this block comment starting point to enable more tests
+{-  Move this block comment starting point to enable more tests            
       suite "Exercise - Foldable for OneMore" do
         test "OneMore foldl" do
           Assert.equal 123
